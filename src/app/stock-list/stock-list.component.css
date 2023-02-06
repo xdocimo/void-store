@@ -1,0 +1,59 @@
+* {
+    transition: all 0.4s ease-out;
+  }
+  
+  
+  
+  /* Structure */
+  table {
+      width: 80%;
+    }
+    
+    .mat-mdc-form-field {
+      font-size: 14px;
+      width: 100%;
+    }
+  
+    body {
+      background: #0d0124;
+      width: 100vw;
+      
+      height: 1200px;
+    }
+  
+    .mat-elevation-z8 {
+      width: 10vw
+    }
+  
+    .centerfield {
+      justify-content: center;
+      align-items: center;
+      display:flex;
+      flex-direction: column 
+    }
+  
+    #mainlogo {
+      color: white;
+      font-size: 220px;
+      justify-content: center;
+      align-items: center;
+      display:flex;
+      flex-direction: column 
+    }
+    
+    #mainlogo:hover {
+      color: rgb(255, 102, 230);
+      font-size: 225px;
+      justify-content: center;
+      align-items: center;
+      display:flex;
+      flex-direction: column 
+    }
+  
+    .titulo {
+      color: white;
+      justify-content: center;
+      align-items: center;
+      display:flex;
+      flex-direction: column 
+    }

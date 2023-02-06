@@ -1,0 +1,225 @@
+* {
+  transition: all 0.4s ease-out;
+}
+
+.arriba {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#mainlogo {
+  color: white;
+  font-size: 220px;
+  justify-content: center;
+  align-items: center;
+}
+
+#mainlogo:hover {
+  color: rgb(255, 102, 230);
+  font-size: 225px;
+  justify-content: center;
+  align-items: center;
+
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  background: #0d0124;
+  width: 100vw;
+  min-width: 100vw;
+  height: 1200px;
+}
+
+
+.final {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to right,
+      #667eea,
+      #764ba2,
+      #6b8dd6,
+      #8e37d7);
+  box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
+}
+
+#actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.final {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 230px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 55px;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 50px;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.final:hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to right,
+      #313c6e,
+      #3a2550,
+      #293755,
+      #33134d);
+  box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
+}
+
+.titulo {
+  font-size: 35px;
+  color: white;
+  align-items: center;
+  margin-bottom: 45px;
+}
+
+.price {
+  color: rgb(255, 176, 251)
+}
+
+.description {
+  font-size: 15px;
+}
+
+.stock {
+  font-size: 10px;
+}
+
+.description:hover,
+.stock:hover {
+  opacity: 80%;
+}
+
+.example-card {
+  height: 5%;
+}
+
+.mat-card {
+  width: 5%;
+}
+
+/* Global Styles */
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  color: #264D73;
+  font-size: 2.5rem;
+}
+
+h2,
+h3 {
+  color: #444;
+  font-weight: lighter;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+body {
+  padding: .5rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+body,
+input[text] {
+  color: #333;
+  font-family: Cambria, Georgia, serif;
+}
+
+a {
+  cursor: pointer;
+}
+
+button {
+  background-color: #eee;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: black;
+  font-size: 1.2rem;
+  padding: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+button:hover {
+  background-color: black;
+  color: white;
+}
+
+button:disabled {
+  background-color: #eee;
+  color: #aaa;
+  cursor: auto;
+}
+
+/* Navigation link styles */
+nav a {
+  padding: 5px 10px;
+  text-decoration: none;
+  margin-right: 10px;
+  margin-top: 10px;
+  display: inline-block;
+  background-color: #e8e8e8;
+  color: #3d3d3d;
+  border-radius: 4px;
+}
+
+nav a:hover {
+  color: white;
+  background-color: #42545C;
+}
+
+nav a.active {
+  background-color: black;
+  color: white;
+}
+
+hr {
+  margin: 1.5rem 0;
+}
+
+input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: .5rem;
+}
+
+.form-label {
+  color: white;
+  font-size: 16px;
+}
+
+.invalid-feedback {
+  color: white;
+}

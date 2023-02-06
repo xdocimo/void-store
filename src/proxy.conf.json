@@ -1,0 +1,38 @@
+{
+    "/products1": {
+        "target": "http://127.0.0.1:3001",
+        "secure": false,
+        "logLevel": "debug",
+        "headers": {
+            "Connection": "keep-alive"
+            
+        },
+        "pathRewrite": {
+            "^/products1": "/products"
+          }
+},
+"/login1": {
+    "target": "http://127.0.0.1:3001",
+    "secure": false,
+    "logLevel": "debug",
+    "headers": {
+        "Connection": "keep-alive"
+        
+    },
+    "pathRewrite": {
+        "^/login1": "/login"
+      }
+},
+"/user1": {
+    "target": "http://127.0.0.1:3001",
+    "secure": false,
+    "logLevel": "debug",
+    "headers": {
+        "Connection": "keep-alive"
+        
+    },
+    "pathRewrite": {
+        "^/user1": "/user"
+      }
+}
+}

@@ -1,0 +1,40 @@
+<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <br>
+    <i class="fa fa-id-badge" id="mainlogo"></i>
+    <!-- selección de producto -->
+    <h2 class="titulo">Lista de clientes</h2>
+  <mat-form-field>
+      <mat-label class="centerfield">Buscar usuario. . .</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ingresa el nombre, usuario o correo electrónico" #input>
+    </mat-form-field>
+    
+    <table style="max-width: 80%" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+    
+      <!-- Position Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Username </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+    
+     <!-- Name Column -->
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Correo electrónico </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </body>

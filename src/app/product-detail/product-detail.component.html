@@ -1,0 +1,254 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<body style="width: 100%;">
+    <div class="container mt-5">
+        <div class="row custom-wrapper">
+            <i class="fa fa-bullseye" id="mainlogo"></i>
+            <!-- selección de producto -->
+            <h2 class="titulo">Seleccioná un producto para administrarlo</h2>
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                <div class="d-grid">
+                    <select class="custom-select mb-3" formControlName="productName" (change)="onSelected()"
+                        [(ngModel)]="enlazar">
+                        <option value="">Selecciona un producto!</option>
+                        <option *ngFor="let product of products" #option value="{{product.id}}">
+                            {{ product.name }} || (ID {{product.id}})
+                        </option>
+                    </select>
+
+                    <hr>
+                    <div class="acciones">
+                        <button class="final" *ngIf="changeforbutton" id="final" type="submit">
+                            Seleccionar producto
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!-- preview del producto -->
+            <div class="test" *ngIf="isSubmitted">
+                <mat-card class="example-card" style="max-width: 80%; width: 80%; max-height: 50%; height: 50%">
+                    <img mat-card image height="35%" width="35%" src="{{productodata.photo}}"
+                        alt="Photo of {{productodata.name}}">
+                    <mat-card-header>
+                        <mat-card-title>{{productodata.name}} (${{productodata.price}})</mat-card-title>
+                        <mat-card-subtitle>
+                            <p class="price">{{productodata.description}}</p>
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p class="stock">Stock: {{productodata.stock}} | Distribuidor: {{productodata.provider}}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <div class="actions">
+                            <button class="edit" (click)="editItem(productodata.id)">Editar</button><button
+                                class="delete" (click)="deleteItem()">Eliminar</button>
+                        </div>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+            <!-- función de editar -->
+            <div class="test" *ngIf="letsgoedit">
+                <h2 class="titulo">Estas editando "{{productodata.name}}" (ID: {{productodata.id}})</h2>
+                <form [formGroup]="reactiveForm" #form="ngForm">
+                    <div class="row">
+                        <div class="col mb-2">
+                            <label for="name" class="form-label">Nombre del producto:</label>
+                            <input type="text" id="name" name="name" formControlName="name"
+                                placeholder="Ponle un nombre creativo a tu producto" required minlength="1"
+                                maxlength="250" class="form-control form-control-sm"
+                                [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="invalid-feedback">
+                                <div *ngIf="name.errors?.['required']">
+                                    Este campo es obligatorio!
+                                </div>
+                                <div *ngIf="name.errors?.['minlength']">
+                                    Este campo debe tener como mínimo 1 caracter.
+                                </div>
+                                <div *ngIf="name.errors?.['maxlength']">
+                                    Este campo debe tener como máximo 30 caracteres.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-2">
+                            <label for="description" class="form-label">Descripcion:</label>
+                            <input type="text" id="description" name="description" formControlName="description"
+                                placeholder="Descripción del producto" required minlength="1" maxlength="250"
+                                class="form-control form-control-sm"
+                                [class.is-invalid]="description.invalid && (description.dirty || description.touched)">
+                            <div *ngIf="description.invalid && (description.dirty || description.touched)"
+                                class="invalid-feedback">
+                                <div *ngIf="description.errors?.['required']">
+                                    Este campo es obligatorio!
+                                </div>
+                                <div *ngIf="description.errors?.['minlength']">
+                                    Este campo debe tener como mínimo 1 caracter.
+                                </div>
+                                <div *ngIf="description.errors?.['maxlength']">
+                                    Este campo debe tener como máximo 250 caracteres.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-2">
+                            <label for="price" class="form-label">Precio:</label>
+                            <input type="number" id="price" name="price" defaultValue="5" formControlName="price"
+                                placeholder="$Precio en dolares" required minlength="1" maxlength="250"
+                                class="form-control form-control-sm"
+                                [class.is-invalid]="price.invalid && (price.dirty || price.touched)">
+                            <div *ngIf="price.invalid && (price.dirty || price.touched)" class="invalid-feedback">
+                                <div *ngIf="price.errors?.['required']">
+                                    Este campo es obligatorio!
+                                </div>
+                                <div *ngIf="price.errors?.['minlength']">
+                                    Este campo debe tener como mínimo 1 caracter.
+                                </div>
+                                <div *ngIf="price.errors?.['maxlength']">
+                                    Este campo debe tener como máximo 5 caracteres.
+                                </div>
+                                <div
+                                    *ngIf="!price.errors?.['required'] && !price.errors?.['minlength'] && !price.errors?.['maxlength']">
+                                    Precio inválido!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-2">
+                            <label for="provider" class="form-label">Proveedor:</label>
+                            <input type="text" id="provider" name="provider" formControlName="provider"
+                                placeholder="Proveedor / Distribuidor del producto" required minlength="1"
+                                maxlength="250" class="form-control form-control-sm"
+                                [class.is-invalid]="provider.invalid && (provider.dirty || provider.touched)">
+                            <div *ngIf="provider.invalid && (provider.dirty || provider.touched)"
+                                class="invalid-feedback">
+                                <div *ngIf="provider.errors?.['required']">
+                                    Este campo es obligatorio!
+                                </div>
+                                <div *ngIf="provider.errors?.['minlength']">
+                                    Este campo debe tener como mínimo 5 caracteres.
+                                </div>
+                                <div *ngIf="provider.errors?.['maxlength']">
+                                    Este campo debe tener como máximo 250 caracteres.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-2">
+                            <label for="stock" class="form-label">Stock:</label>
+                            <input type="number" id="stock" name="stock" formControlName="stock"
+                                placeholder="Cantidad de disponibilidad" required minlength="1" maxlength="250"
+                                class="form-control form-control-sm"
+                                [class.is-invalid]="stock.invalid && (stock.dirty || stock.touched)">
+                            <div *ngIf="stock.invalid && (stock.dirty || stock.touched)" class="invalid-feedback">
+                                <div *ngIf="stock.errors?.['required']">
+                                    Este campo es obligatorio!
+                                </div>
+                                <div *ngIf="stock.errors?.['minlength']">
+                                    Este campo debe tener como mínimo 1 caracter.
+                                </div>
+                                <div *ngIf="stock.errors?.['maxlength']">
+                                    Este campo debe tener como máximo 250 caracteres.
+                                </div>
+                                <div
+                                    *ngIf="!stock.errors?.['required'] && !stock.errors?.['minlength'] && !stock.errors?.['maxlength']">
+                                    Stock inválido!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-2">
+                            <label for="image" class="form-label">Imagen de producto (Imgur HTTPS):</label>
+                            <input type="text" id="image" name="image" formControlName="image"
+                                placeholder="URL a la imagen" required minlength="1" maxlength="250"
+                                class="form-control form-control-sm"
+                                [class.is-invalid]="image.invalid && (image.dirty || image.touched)">
+                            <div *ngIf="image.invalid && (image.dirty || image.touched)" class="invalid-feedback">
+                                <div *ngIf="image.errors?.['required']">
+                                    Este campo es obligatorio!
+                                </div>
+                                <div *ngIf="image.errors?.['minlength']">
+                                    Este campo debe tener como mínimo 1 caracter.
+                                </div>
+                                <div *ngIf="image.errors?.['maxlength']">
+                                    Este campo debe tener como máximo 250 caracteres.
+                                </div>
+                                <div
+                                    *ngIf="!image.errors?.['required'] && !image.errors?.['minlength'] && !image.errors?.['maxlength']">
+                                    image inválido!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="actions">
+                        <div class="acciones">
+                            <button type="button" class="finalsave" (click)="validate()">Guardar cambios</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Confirmación de borrado, popup :)-->
+    <div id="popup" *ngIf="popup">
+    <div class="popup-container">
+        <div class="popup">
+        <div class="titlepopup">¿Estás seguro de eliminar {{productodata.name}}?</div>
+        <div class="descriptionpopup">Esta acción es de acción inmediata y no es reversible!</div>
+        <div class="actions">
+            <button type="button" class="finalconfirm" (click)="confirm()">Eliminar {{productodata.name}}</button>
+            <button type="button" class="finalcancel" (click)="cancel()">Cancelar</button>
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- Confirmación de edición, popup :)-->
+    <div id="popup2" *ngIf="popup2">
+        <div class="popup-container">
+            <div class="popup">
+            <div class="titlepopup">Estás a punto de modificar {{productodata.name}}</div>
+            <div class="descriptionpopup">¿Estás seguro de estos cambios? </div>
+            <div class="previewpast">
+                <mat-card class="example-card" style="max-width: 40%; float: left; margin-right: 15px;">
+                    <h1 style="color: black; font-size: 12px;">Antes</h1>
+                    <img mat-card image height="40%" width="40%" src="{{this.image.value}}"
+                        alt="Photo of {{this.name.value}}">
+                    <mat-card-header>
+                        <mat-card-title>{{this.productodata.name}}</mat-card-title>
+                        <mat-card-subtitle>
+                            <p class="price">${{this.productodata.price}} USD</p>
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p class="description">{{this.productodata.description}}</p>
+                        <p class="stock">Stock: {{this.productodata.stock}} | Distribuidor: {{this.productodata.provider}}</p>
+                    </mat-card-content>
+                </mat-card>
+                <div class="previewfuture">
+                    <mat-card class="example-card" style="max-width: 40%; float: left">
+                        <h1 style="color: black; font-size: 12px;">Despues</h1>
+                        <img mat-card image height="40%" width="40%" src="{{this.image.value}}"
+                            alt="Photo of {{this.name.value}}">
+                        <mat-card-header>
+                            <mat-card-title>{{this.name.value}}</mat-card-title>
+                            <mat-card-subtitle>
+                                <p class="price">${{this.price.value}} USD</p>
+                            </mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <p class="description">{{this.description.value}}</p>
+                            <p class="stock">Stock: {{this.stock.value}} | Distribuidor: {{this.provider.value}}</p>
+                        </mat-card-content>
+                    </mat-card>
+                    <br>
+            <div class="actions">
+                <button type="button" class="finaledit" (click)="validate2()">Modificar</button>
+                <button type="button" class="finalcancel" (click)="cancel2()">Cancelar</button>
+            </div>
+        </div>
+        </div>
+        </div>

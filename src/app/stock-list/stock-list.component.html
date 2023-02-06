@@ -1,0 +1,36 @@
+<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <br>
+    <i class="fa fa-clipboard" id="mainlogo"></i>
+    <!-- selección de producto -->
+    <h2 class="titulo">Consultar stock de los productos</h2>
+  <mat-form-field>
+      <mat-label class="centerfield">Buscar . . .</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Titulo del producto" #input>
+    </mat-form-field>
+    
+    <table style="max-width: 80%" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nombre  </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="stock">
+        <th mat-header-cell *matHeaderCellDef> Stock </th>
+        <td mat-cell *matCellDef="let element"> {{element.stock}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No se han encontrado resultados para "{{input.value}}"</td>
+      </tr>
+    </table>
+  </body>
