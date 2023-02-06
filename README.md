@@ -1,27 +1,22 @@
-# Login
+Proyecto Void Store. | Tesis Final. Diplomatura Universitaria ICARO Desarollo Web Fullstack 2023
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
+# FEATURES:
+/index-view : PAGINA DE INICIO, MUESTRA LOS PRODUCTOS DE NUESTRA PÁGINA WEB. (getproducts)
+/admin : CONSIDERESE EL ADMIN PANEL DEL USUARIO, DONDE PODRÁ ELEGIR QUÉ ACCIÓN REALIZAR.
+/addproduct : CREA UN NUEVO PRODUCTO, MIRE EN TIEMPO REAL LA VISTA PREVIA. (addProduct)
+/pdetail : SELECCIONA UN PRODUCTO, MIRE SUS DETALLES, EDITELO O ELIMINELO A GUSTO. (DELETEPRODUCT Y EDITPRODUCT) (PRODUCT-DETAIL)
+/viewproducts : UNA TABLA CON TODOS LOS PRODUCTOS, PERMITE LA BÚSQUEDA ENTRE LOS MISMOS. (product-list)
+/customers (BONUS) (API EXTERNA) : UNA LISTA DE LOS USUARIOS REGISTRADOS EN LA PÁGINA WEB.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# CUESTIONES TECNICAS.
+Backend ha de correr en :3001.
+Frontend ha de correr en :4200.
 
-## Code scaffolding
+Base de datos deberá importarse a MySQL Workbench, el archivo está en basededatos/final_products.sql o crearse, la estructura es la siguiente: ID,name,price,description,photo,provider,stock
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# KNOWN ISSUES.
+Overlapping del modulo de Footer. (Nunca me contestaste como hacerlo y StackOverFlow no es muy claro al respecto)
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+#DEDICATORIA:
+Gracias Ale por todo lo impartido y enseñado, sé que no debe haber sido fácil. Gracias por tu paciencia. !
